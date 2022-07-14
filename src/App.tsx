@@ -12,20 +12,18 @@ function App() {
   const API_URL = 'https://jsonplaceholder.typicode.com/todos/'
 
   const getAPI = useCallback(
-    async (e) => {
-      e.preventDefault()
+    async () => {
       const res = await axios.get(API_URL)
       setList(res.data.slice(1, 10))
-    }, [API_URL]
+    }, []
   )
 
   useEffect(() => {
-    if (list.length) console.log(list);
-  }, [list])
+    getAPI()
+  }, [])
 
   return (
     <div className="App">
-      <button onClick={getAPI}>클릭 ㅋ</button>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
